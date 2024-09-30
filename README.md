@@ -36,3 +36,11 @@ docker exec modelv1 pytest -v --junitxml TestResults.xml --cache-clear
 docker cp modelv1:/code/src/TestResults.xml .
 docker exec -d -w /code modelv1 python main.py
 ```
+
+#### payload url format
+
+```webhook
+
+//926a-103-157-237-113.ngrok-free.app/github-webhook/ (replace with your link)
+
+```
