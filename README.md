@@ -30,11 +30,12 @@ pip install .
 
 ```docker
 docker build -t loan_pred:v1 .
-docker run -d -it --name modelv2 -p 8005:8005 ailearning/modelv1:26 bash
+docker run -d -it --name modelv2 -p 8005:8005 sfgrahman/cicdjenkins:latest bash
 docker exec modelv1 python prediction_model/training_pipeline.py
 docker exec modelv1 pytest -v --junitxml TestResults.xml --cache-clear
 docker cp modelv1:/code/src/TestResults.xml .
 docker exec -d -w /code modelv1 python main.py
+docker exec -d -w /code modelv1 uvicorn main:app --proxy-headers --host 0.0.0.0 --port 8005
 ```
 
 #### payload url format
